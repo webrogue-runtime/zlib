@@ -183,8 +183,14 @@ elseif(BUILD_SHARED_LIBS AND WIN32)
     set_target_properties(zlib PROPERTIES SUFFIX "1.dll")
 endif()
 
+if(ZLIB_SKIP_SHARED)
+    set(ZLIB_INSTALL_LIBS zlibstatic)
+else()
+    set(ZLIB_INSTALL_LIBS zlib zlibstatic)
+endif()
+
 if(NOT SKIP_INSTALL_LIBRARIES AND NOT SKIP_INSTALL_ALL )
-    install(TARGETS zlib zlibstatic
+    install(TARGETS ${ZLIB_INSTALL_LIBS}
         RUNTIME DESTINATION "${INSTALL_BIN_DIR}"
         ARCHIVE DESTINATION "${INSTALL_LIB_DIR}"
         LIBRARY DESTINATION "${INSTALL_LIB_DIR}" )
