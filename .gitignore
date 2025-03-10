@@ -35,3 +35,4 @@ contrib/vstudio/vc143/arm64
 contrib/nuget/bin
 contrib/nuget/obj
 *.included
+zconf.h # cmake just keep deleting it, idk why. TODO do something with it
